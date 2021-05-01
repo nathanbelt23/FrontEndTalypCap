@@ -1,0 +1,100 @@
+<div class="card animated bounceInDown">
+    <div class="row">
+        <div class="card col-sm-6">
+            <div>
+                <h4 class="card-title">Edit Book</h4>
+
+                <form class="form" [formGroup]="form" (ngSubmit)="save()">
+                    <div class="form-group">
+                        <label for="exampleInputuname">Title*</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-agenda"></i></div>
+                            <input [ngClass]="{ 'is-invalid': getControlValid('title') }" type="text" class="form-control" id="exampleInputuname" placeholder="Title" formControlName="title" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputuname">Page Count*</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-desktop"></i></div>
+                            <input type="number" [ngClass]="{ 'is-invalid': getControlValid('pageCount') }" class="form-control" id="exampleInputuname" placeholder="description" formControlName="pageCount" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputuname">Excerpt*</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-desktop"></i></div>
+                            <input [ngClass]="{ 'is-invalid': getControlValid('excerpt') }" type="text" class="form-control" id="exampleInputuname" placeholder="excerpt" formControlName="excerpt" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputuname">Description*</label>
+                        <div class="input-group ">
+                            <div class="input-group-addon"><i class="ti-desktop"></i></div>
+                            <input [ngClass]="{ 'is-invalid': getControlValid('description') }" type="text" class="form-control" id="exampleInputuname" placeholder="description" formControlName="description" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Publish Date *</label>
+                        <div class="input-group">
+                            <p-calendar [locale]="es" class="col-10" readonlyInput name="entryDate" formControlName="publishDate" [showIcon]="true" inputId="icon" dateFormat="yy-mm-dd" inputId="spanish" inputId="basic"></p-calendar>
+                            <input type="hidden" />
+                        </div>
+                    </div>
+
+                    <button type="submit" [disabled]="form.invalid" class="btn btn-success waves-effect waves-light m-r-10">
+            <i class="fa fa-life-saver"></i> Save
+          </button>
+                    <button type="button" routerLink="/dashboard/Books" class="btn btn-secondary waves-effect waves-light">
+            <i class="fa fa-arrow-circle-left"></i> Return
+          </button>
+                </form>
+            </div>
+        </div>
+
+        <div class=" card col-sm-6">
+            <h4 class="card-title">Select Authors</h4>
+
+            <div class="card-body ">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Select</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of Authors;let i=index;">
+
+                                <td>{{item.lastName}}</td>
+
+
+                                <td scope="row">{{item.firstName}}</td>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="checkbox checkbox-success">
+                                            <input [id]="'checkbox1'+ i" [(ngModel)]="item.seleccionado" type="checkbox">
+                                            <label [for]="'checkbox1'+ i"> </label>
+                                        </div>
+                                    </div>
+
+
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

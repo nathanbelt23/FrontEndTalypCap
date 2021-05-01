@@ -1,0 +1,95 @@
+<div class="animated bounceInDown">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="alert alert-info  text-center" role="alert" *ngIf="booCargando">
+                        <div class="alert-heading">Cargando</div>
+                        <i class="fa fa-spin fa-refresh"> </i>
+                        <p class="mb-0"> por favor espera</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-8">
+                            <h4 class="card-title">Authors ({{ Authors.length }})</h4>
+                            <h6 class="card-subtitle">
+                                list author
+                            </h6>
+                        </div>
+
+                        <div class="col">
+                            <div class="text-right">
+                                <button class="btn btn-primary" routerLink="/dashboard/Author/0">
+                                    <i class="fa fa-plus-circle" ></i> 
+                                    Create Author
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="table-responsive" *ngIf="!booCargando">
+
+
+                        <p-table [value]="Authors" id="excel-table" #dt1 dataKey="title" [rows]="30" [showCurrentPageReport]="true" [rowsPerPageOptions]="[30, 50, 100]" styleClass="p-datatable-customers p-datatable-gridlines" [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                            [globalFilterFields]="['firstName', 'lastName']">
+                            <ng-template pTemplate="caption">
+                                <div class="p-d-flex float-right">
+                                    <span class="p-input-icon-left p-ml-auto">
+                  <input
+                    pInputText
+                    type="text"
+                    (input)="dt1.filterGlobal($event.target.value, 'contains')"
+                    placeholder="Search keyword"
+                  />
+                </span>
+                                </div>
+                            </ng-template>
+
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th pSortableColumn="firstName">
+                                        <div class="p-d-flex p-jc-between p-ai-center">
+                                            First Name
+                                            <p-columnFilter type="text" field="firstName" display="menu"></p-columnFilter>
+                                        </div>
+                                    </th>
+
+                                    <th pSortableColumn="lastName">
+                                        <div class="p-d-flex p-jc-between p-ai-center">
+                                            Last Name
+                                            <p-columnFilter type="text" field="lastName" display="menu"></p-columnFilter>
+                                        </div>
+                                    </th>
+
+                                    <th class="text-nowrap text-center">Action</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-car>
+                                <tr>
+                                    <td>{{ car.firstName }}</td>
+                                    <td>{{ car.lastName }}</td>
+
+                                    <td class="text-nowrap text-center">
+                                        <a [routerLink]="['/dashboard/Author', car.authorID]" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                                        <a (click)="delete(car.authorID)" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<!-- {{Authors|json}} -->

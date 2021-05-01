@@ -1,0 +1,27 @@
+<div class="card animated bounceInDown">
+
+    <div class="card-body">
+        <h4 class="card-title">Edit Author</h4>
+
+        <form class="form p-t-20" [formGroup]="form" (ngSubmit)="save()">
+            <div class="form-group">
+                <label for="exampleInputuname">First name*</label>
+                <div class="input-group col-5">
+                    <div class="input-group-addon"><i class="ti-user"></i></div>
+                    <input [ngClass]="{'is-invalid': getControlValid('firstName')}" type="text" class="form-control" id="exampleInputuname" placeholder="firstName" formControlName="firstName">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputuname">Last name*</label>
+                <div class="input-group col-5">
+                    <div class="input-group-addon"><i class="ti-user"></i></div>
+                    <input [ngClass]="{'is-invalid': getControlValid('lastName')}" type="text" class="form-control" id="exampleInputuname" placeholder="lastName" formControlName="lastName">
+                </div>
+            </div>
+
+            <button type="submit" [disabled]="form.invalid" class="btn btn-success waves-effect waves-light m-r-10"> <i class="fa fa-life-saver"></i> Save</button>
+            <button type="button" routerLink="/dashboard/Authors" class="btn btn-secondary waves-effect waves-light">   <i class="fa fa-arrow-circle-left"></i>   Return</button>
+        </form>
+    </div>
+</div>

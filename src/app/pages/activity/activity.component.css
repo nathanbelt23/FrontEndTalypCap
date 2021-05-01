@@ -1,0 +1,10 @@
+p-calendar.calendar-control {
+    opacity: 1;
+    color: black;
+    background: #eeeeee;
+}
+
+.date-input-field {
+    width: 18em;
+    background-color: red;
+}
